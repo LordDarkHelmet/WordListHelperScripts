@@ -2,6 +2,19 @@
 A collection of python scripts that aid in the creation of word list permutations
 
 
+## Word Lists
+
+I use the following word lists in my examples below.
+
+Each line counts as 1 word. 
+
+```
+wordlist1.txt           wordlist2.txt           wordlist3.txt
+AAA                     111                     aaa
+BBB                     222                     bbb
+CCC                     333                     ccc
+```
+
 ## inOrderPermutationsOfNLists.py
 
 Generates all permutations of N word lists where wordlist 1 is slot 1, wordlist 2 is slot 2, ...
@@ -86,31 +99,4 @@ BBBAAA
 BBBCCC
 CCCAAA
 CCCBBB
-```
-
-## Word Lists
-
-Each line counts as 1 word. 
-
-My examples use the following word lists: 
-
-wordlist1.txt 
-```
-AAA
-BBB
-CCC
-```
-
-wordlist2.txt 
-```
-111
-222
-333
-```
-
-wordlist3.txt
-```
-aaa
-bbb
-ccc
 ```
