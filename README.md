@@ -106,3 +106,71 @@ BBBCCC
 CCCAAA
 CCCBBB
 ```
+
+## inOrderPermutationsOfNListsWithMask.py
+
+Generates all permutations of N word lists where wordlist 1 is slot 1, wordlist 2 is slot 2, ...
+
+attributes are any number of word lists. The permutation length is the nubmer of word lists. 
+
+?d and ?s are wildcards for files that produce numbers and symbols. It is just like defining files yourself, but they are built in.
+
+```
+?d = 0,1,2,3,4,5,6,7,8,9
+?s = !,@,#,$,%,^,&,*,(,),_,-,+,=,{,},[,],\,|,?,",<,>,:,;,.,/,,
+```
+
+```
+Use:
+python .\inOrderPermutationsOfNListsWithMask.py wordlist1.txt ?d 
+
+Result:
+AAA0
+AAA1
+AAA2
+AAA3
+AAA4
+AAA5
+AAA6
+AAA7
+AAA8
+AAA9
+BBB0
+BBB1
+BBB2
+BBB3
+BBB4
+BBB5
+BBB6
+BBB7
+BBB8
+BBB9
+CCC0
+CCC1
+CCC2
+CCC3
+CCC4
+CCC5
+CCC6
+CCC7
+CCC8
+CCC9
+```
+```
+Use:
+python .\inOrderPermutationsOfNLists.py ?d ?s
+
+Result:
+0!
+0@
+0#
+0$
+
+<Lots more>
+
+9;
+9.
+9/
+9,
+```
+
