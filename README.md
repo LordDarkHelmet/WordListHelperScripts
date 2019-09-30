@@ -1,6 +1,12 @@
 # WordListHelperScripts
 A collection of python scripts that aid in the creation of word list permutations
 
+## Prerequisites
+
+Tested on Ubuntu 18.04 using Pyton 3 (3.5.1)
+```
+apt -y install python3
+```
 
 ## Word Lists
 
