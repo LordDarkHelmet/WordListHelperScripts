@@ -3,7 +3,7 @@ A collection of python scripts that aid in the creation of word list permutation
 
 *IF you are running this on Windows and want to output the information to be used with John The Ripper, you need to output in UTF-8 in order to do this you should use  "| out-file myWordList.txt -encoding utf8" For example:*
 ```
-PS C:\YourFolder> python .\inOrderPermutationsOfNLists.py .\List_1.txt .\List_2.txt | out-file CombinedWordList.txt -encoding utf8
+python .\inOrderPermutationsOfNLists.py .\List_1.txt .\List_2.txt | out-file CombinedWordList.txt -encoding utf8
 ```
 
 ## Prerequisites
