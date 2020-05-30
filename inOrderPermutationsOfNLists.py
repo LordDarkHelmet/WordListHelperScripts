@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 LordDarkHelmet (https://github.com/LordDarkHelmet)
+# Copyright (c) 2020 LordDarkHelmet (https://github.com/LordDarkHelmet)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this software and associated documentation files (the "Software"), to deal in
@@ -40,7 +40,7 @@ args = parser.parse_args()
 
 
 with ExitStack() as stack:
-    files = [stack.enter_context(open(fname)) for fname in args.wordlists]
+    files = [stack.enter_context(open(fname, mode='r', encoding='utf-8')) for fname in args.wordlists]
     all_lists = []
 
     for file in files:
