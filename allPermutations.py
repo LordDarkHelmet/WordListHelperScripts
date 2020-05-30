@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 LordDarkHelmet (https://github.com/LordDarkHelmet)
+# Copyright (c) 2020 LordDarkHelmet (https://github.com/LordDarkHelmet)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this software and associated documentation files (the "Software"), to deal in
@@ -35,7 +35,7 @@ if not PY3:
 
   
 parser = argparse.ArgumentParser(description='generates all permutations in a word list')
-parser.add_argument('wordlist', help='The wordlist to generate all permutations', type=argparse.FileType('r'))
+parser.add_argument('wordlist', help='The wordlist to generate all permutations', type=argparse.FileType(mode='r', encoding='utf-8'))
 parser.add_argument('words', help='The length of the permutations in words', type=int)
 args = parser.parse_args()
 
