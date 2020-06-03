@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Copyright (c) 2020 LordDarkHelmet (https://github.com/LordDarkHelmet)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -23,21 +24,33 @@ import os
 import sys
 import argparse
 import itertools
+import timeit
+import math
 
 from contextlib import ExitStack
 from itertools import permutations
-
 
 PY3 = sys.version_info[0] == 3
 if not PY3:
     print("This program has only been tested on Python 3.6+, you are using an unknown version of python.")
     sys.exit(0)
 
-  
-parser = argparse.ArgumentParser(description='generates all permutations of N word lists where wordlist 1 is slot 1, wordlist 2 is slot 2, ...')
+def sizeoffile_fmt(filesize_bytes):
+    for units in ['Bytes','KB','MB','GB','TB']:
+        if abs(filesize_bytes) < 1024.0:
+            return "%3.1f %s" % (filesize_bytes, units)
+        filesize_bytes /= 1024.0
+    return "%.1f %s" % (filesize_bytes, 'PB')
+
+parser = argparse.ArgumentParser(description='Generates all permutations of N word lists where wordlist 1 is slot 1, wordlist 2 is slot 2, ... \n\nUse -f to specify the destination file.')
+parser.add_argument("-f", dest="filename", required=True, help="Destination File (where the combined list is stored)", metavar="FILENAME")
 parser.add_argument('wordlists', nargs='+', help='The wordlists you would like to combine')
 args = parser.parse_args()
 
+start_time = timeit.default_timer()
+
+print('\nStarting...\n')
+print('Combining {} wordlists'.format(len(args.wordlists)))
 
 with ExitStack() as stack:
     files = [stack.enter_context(open(fname, mode='r', encoding='utf-8')) for fname in args.wordlists]
@@ -46,5 +59,31 @@ with ExitStack() as stack:
     for file in files:
         all_lists.append(file.read().splitlines())
 
-for line in list(itertools.product(*all_lists)):
-    print(''.join(line))
+print('\nNumber of items in each slot:')
+all_list_item_count = [ len(listElem) for listElem in all_lists]
+print(all_list_item_count)
+
+print('\n')
+print('Number of Permutation:')
+num_permutations = 1
+for x in all_list_item_count:
+    num_permutations = num_permutations * x
+print("{:,}".format(num_permutations))
+print('\nLoading...')
+
+progress_count=0
+next_print_percent=0
+increment = num_permutations/1000
+with open(args.filename, "wb") as file1:
+    for line in list(itertools.product(*all_lists)):
+        file1.write((''.join(line) + '\n').encode('UTF-8'))
+        progress_count += 1
+        if next_print_percent <= progress_count:
+            next_print_percent = min(progress_count + increment, num_permutations)
+            print('Processing... [{:.1f}%]\r'.format((progress_count/num_permutations)*100), end="")
+
+elapsed = timeit.default_timer() - start_time
+print("\nNumber of items in file = {:,}".format(progress_count))
+print('Execution Time: {:.4f} seconds \n'.format(elapsed))
+print('Word List File: [{}] {}'.format(sizeoffile_fmt(os.stat(args.filename).st_size), args.filename))
+print('Done!\n')
