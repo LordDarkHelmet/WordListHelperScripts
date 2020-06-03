@@ -1,14 +1,18 @@
 # WordListHelperScripts
 A collection of python scripts that aid in the creation of word list permutations
 
-*IF you are running this on Windows and want to output the information to be used with John The Ripper, you need to output in UTF-8 in order to do this you should use  "| out-file myWordList.txt -encoding utf8" For example:*
+*John The Ripper uses UTF-8 files. Files are read in and outputed as UTF-8.*
+
+**usage: inOrderPermutationsOfNLists.py [-h] -f FILENAME wordlists [wordlists ...]**<br>
+*Example:*
 ```
-python .\inOrderPermutationsOfNLists.py .\List_1.txt .\List_2.txt | out-file CombinedWordList.txt -encoding utf8
+python .\inOrderPermutationsOfNLists.py -f OutputWordList.txt .\List_1.txt .\List_2.txt 
 ```
 
 ## Prerequisites
 
-Tested on Ubuntu 18.04 using Pyton 3 (3.5.1)
+Tested on Windows 10 using Python 3 (3.8.3)<br>
+Tested on Ubuntu 18.04 using Python 3 (3.6.9)
 ```
 apt -y install python3
 ```
@@ -34,7 +38,7 @@ attributes are any number of word lists. The permutation length is the nubmer of
 
 ```
 Use:
-python .\inOrderPermutationsOfNLists.py wordlist1.txt wordlist2.txt wordlist3.txt 
+python .\inOrderPermutationsOfNLists.py -f OutputWordList.txt wordlist1.txt wordlist2.txt wordlist3.txt 
 
 Result:
 AAA111aaa
@@ -67,7 +71,7 @@ CCC333ccc
 ```
 ```
 Use:
-python .\inOrderPermutationsOfNLists.py wordlist1.txt wordlist2.txt
+python .\inOrderPermutationsOfNLists.py -f OutputWordList.txt wordlist1.txt wordlist2.txt
 
 Result:
 AAA111
@@ -89,7 +93,7 @@ Attributes are a word list and the permutation length.
 
 ```
 use: 
-python .\allPermutations.py wordlist1.txt 3
+python .\allPermutations.py -f OutputWordList.txt wordlist1.txt 3
 
 retult:
 AAABBBCCC
@@ -101,7 +105,7 @@ CCCBBBAAA
 ```
 ```
 use: 
-python .\allPermutations.py wordlist1.txt 2
+python .\allPermutations.py -f OutputWordList.txt wordlist1.txt 2
 
 retult:
 AAABBB
@@ -127,7 +131,7 @@ attributes are any number of word lists. The permutation length is the nubmer of
 
 ```
 Use:
-python .\inOrderPermutationsOfNListsWithMask.py wordlist1.txt ?d 
+python .\inOrderPermutationsOfNListsWithMask.py -f OutputWordList.txt wordlist1.txt ?d 
 
 Result:
 AAA0
@@ -163,7 +167,7 @@ CCC9
 ```
 ```
 Use:
-python .\inOrderPermutationsOfNLists.py ?d ?s
+python .\inOrderPermutationsOfNLists.py -f OutputWordList.txt ?d ?s
 
 Result:
 0!
